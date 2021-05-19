@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body id="page-top">
+<!-- About-->
+<section class="about-section text-center" id="about" th:fragment="about-content">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="text-white mb-4">About Jetzer's Projects</h2>
+        <p class="text-white-50">
+          First of all, I'm no designer, so I stole this fancy bootstrap template
+          <a href="https://startbootstrap.com/theme/grayscale/">Grayscale Bootstrap Template</a>.
+          Although I do know my way around with coding, therefore I created this website, so I have a place to put some of my projects.
+          My friends know me as Jesper, although some of them also know me as Jetzer as well, which is my gamer tag.
+          I'm working as a Java Developer and I'm born and raised in the Netherlands.
+          I'm <span id="my-age">?</span> years old and currently living in Munich 🍺
+        </p>
+
+      </div>
+    </div>
+    <img class="img-fluid" th:src="@{/images/ipad.png}" alt="..."/>
+  </div>
+
+  <script>
+    function calculate_age(dob) {
+      var diff_ms = Date.now() - dob.getTime();
+      var age_dt = new Date(diff_ms);
+
+      return Math.abs(age_dt.getUTCFullYear() - 1970);
+    }
+    document.getElementById("my-age").textContent = calculate_age(new Date(1992, 12, 2));
+  </script>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Imp's Adventure | Jetzer's Projects</title>
+  <style>
+    #game-grid {
+      border: 1px solid red;
+      padding: 40px 10px 10px 15px;
+      background: no-repeat;
+      /*background-size:cover;*/
+    }
+    tr{
+
+    }
+    td {
+      border: 1px solid red;
+      width: 103px;
+      height: 114px;
+      text-align: center;
+    }
+    td.active {
+      border: 6px solid black;
+      padding: 0;
+      font-weight: bold;
+      width: 100px;
+      height: 110px;
+      text-align: center;
+      font-size: 30px;
+    }
+
+
+
+
+    tr:nth-child(even) > td:nth-child(odd) {
+      background-color: rgba(0,255,0,0.6);
+    }
+    tr:nth-child(even) > td:nth-child(even) {
+      background-color: rgba(255,0,0,0.6);
+    }
+    tr:nth-child(odd) > td:nth-child(odd) {
+      background-color: rgba(255,0,0,0.6);
+    }
+    tr:nth-child(odd) > td:nth-child(even) {
+      background-color: rgba(0,255,0,0.6);
+    }
+  </style>
+  <style th:inline="text">
+  </style>
+</head>
+<body>
+<h1>Imp's Adventure</h1>
+<img th:src="@{/images/imp/imp-map.jpg}" alt="imp's adventure map" width="300px" src=""/>
+<table id="game-grid" th:style="'background-image: url('+ @{/images/imp/imp-map.jpg} +');'">
+</table>
+
+<script>
+  const FIELD_TYPES = Object.freeze({
+    "START": "Start",
+
+    "GREEN_ORBS": "Spirit",
+    "PURPLE_ORBS": "Promotion Stone",
+    "DUST": "Magic Dust",
+
+    "CHAOS": "Chaos Stone",
+    "MONSTER": "Monster Soul",
+
+    "THREE_STAR": "3 Star Shards",
+    "FOUR_STAR": "4 Star Shards",
+    "FIVE_STAR": "5 Star Shards",
+
+    "MUSHROOM": "Starry Mushroom",
+
+    "LUCKY": "Lucky Hut", // gives lucky dice
+    "WISH": "Wishing Hut", // gives ordinary dice
+    "KARMA": "Karma Hut", // even = forwards, odd = backwards
+    "FORTUNE": "Fortune Hut", // chance between: double / two dice / backwards / double stars
+  })
+
+  // index : coordinates, desc , level
+  var playableFieldDefinitions = {
+    "-1": {coords: "0:0", desc: FIELD_TYPES.START, level: 0},
+    "0": {coords: "1:0", desc: FIELD_TYPES.GREEN_ORBS, level: 1},
+    "1": {coords: "1:1", desc: FIELD_TYPES.PURPLE_ORBS, level: 1},
+    "2": {coords: "1:2", desc: FIELD_TYPES.DUST, level: 1},
+    "3": {coords: "0:2", desc: FIELD_TYPES.MUSHROOM, level: 1},
+    "4": {coords: "0:3", desc: FIELD_TYPES.WISH, level: 0},
+    "5": {coords: "0:4", desc: FIELD_TYPES.THREE_STAR, level: 1},
+    "6": {coords: "1:4", desc: FIELD_TYPES.GREEN_ORBS, level: 1},
+    "7": {coords: "1:5", desc: FIELD_TYPES.MONSTER, level: 1},
+    "8": {coords: "1:6", desc: FIELD_TYPES.DUST, level: 1},
+    "9": {coords: "2:6", desc: FIELD_TYPES.FORTUNE, level: 0},
+    "10" : {coords: "3:6", desc: FIELD_TYPES.MUSHROOM, level: 1},
+    "11" : {coords: "4:6", desc: FIELD_TYPES.PURPLE_ORBS, level: 1},
+    "12" : {coords: "4:5", desc: FIELD_TYPES.FIVE_STAR, level: 1},
+    "13" : {coords: "4:4", desc: FIELD_TYPES.GREEN_ORBS, level: 1},
+    "14" : {coords: "4:3", desc: FIELD_TYPES.KARMA, level: 0},
+    "15" : {coords: "4:2", desc: FIELD_TYPES.DUST, level: 1},
+    "16" : {coords: "4:1", desc: FIELD_TYPES.FOUR_STAR, level: 1},
+    "17" : {coords: "4:0", desc: FIELD_TYPES.MUSHROOM, level: 1},
+    "18" : {coords: "3:0", desc: FIELD_TYPES.CHAOS, level: 1},
+    "19" : {coords: "2:0", desc: FIELD_TYPES.LUCKY, level: 0},
+  }
+
+
+
+  var gameGrid = document.getElementById("game-grid");
+  for (var y = 0; y <= 4; y++) {
+    var row = document.createElement("tr");
+    for (var x = 0; x <= 6; x++) {
+      var cell = document.createElement("td");
+      if (y === 0 && x === 0) cell.classList.add("active");
+      var cellText = document.createTextNode(y + ":" + x);
+
+      cell.appendChild(cellText);
+
+      row.appendChild(cell);
+    }
+    gameGrid.appendChild(row);
+  }
+</script>
+</body>
+</html>
+
+
