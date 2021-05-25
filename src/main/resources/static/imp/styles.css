@@ -1,0 +1,61 @@
+#game-info {
+  float:left;
+  margin-left: 20px;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  min-height: 500px;
+  min-width: 300px;
+}
+
+#game-grid {
+  border: 1px solid red;
+  padding: 40px 10px 10px 15px;
+  background: no-repeat;
+  float:left;
+  font-weight: bold;
+}
+#game-grid tr{
+
+}
+#game-grid td {
+  border: 1px solid red;
+  width: 103px;
+  height: 114px;
+  text-align: center;
+}
+#game-grid td.active {
+  border: 6px solid black;
+  padding: 0;
+  font-weight: bold;
+  width: 100px;
+  height: 110px;
+  text-align: center;
+  font-size: 30px;
+}
+
+/* GRID */
+/*#game-grid tr:nth-child(even) > td:nth-child(odd) {
+  background-color: rgba(0,255,0,0.6);
+}
+#game-grid tr:nth-child(even) > td:nth-child(even) {
+  background-color: rgba(255,0,0,0.6);
+}
+#game-grid tr:nth-child(odd) > td:nth-child(odd) {
+  background-color: rgba(255,0,0,0.6);
+}
+#game-grid tr:nth-child(odd) > td:nth-child(even) {
+  background-color: rgba(0,255,0,0.6);
+}*/
+
+/* DICE */
+#dice-result,#roll-index {
+  font-weight: bold;
+  color: red;
+}
+#history {
+  border: 1px solid black;
+}
+#history td,th {
+  border: 1px solid black;
+}
